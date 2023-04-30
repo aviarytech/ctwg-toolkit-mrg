@@ -55,6 +55,9 @@ public class MRGlossaryGenerator {
   }
 
   private Version getVersion(SAFModel saf, String versionTag) throws MRGGenerationException {
+    // System.out.printf("\n\nsaf@@@@@@@@@@@@@@: ");
+    // System.out.printf(saf.toString());
+
     List<Version> versions = saf.getVersions();
     Optional<Version> version = Optional.empty();
     for (Version v : versions) {

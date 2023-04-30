@@ -33,11 +33,26 @@ public class MRGApi {
 
   @RequestMapping(value = "/ctwg/mrg", method = RequestMethod.POST)
   String createMrg(WebRequest webRequest, Model webMvcModel) {
+    // System.out.printf("Hello, world!1", webRequest);
+    System.out.printf("\nHello, world!1!!!!!!!!!!!!!!!!!");
+    System.out.printf("\nscopedir: ");
+    System.out.printf(webRequest.getParameter("scopedir"));
+    System.out.printf("\nsafFilename: ");
+    System.out.printf(webRequest.getParameter("safFilename"));
+    System.out.printf("\nversionTag: ");
+    System.out.printf(webRequest.getParameter("versionTag"));
+    System.out.printf("\nGoodbye, world!1!!!!!!!!!!!!!!!!!");
+
     MRGParams params =
         new MRGParams(
             webRequest.getParameter("scopedir"),
             webRequest.getParameter("safFilename"),
             webRequest.getParameter("versionTag"));
+    System.out.printf("\n\nparams: ");
+    System.out.printf(params.safFilename());
+    // double value = 3.14159;
+    // System.out.printf("The value of pi is: %.2f", value);
+
     MRGModel mrg = generator.generate(params.scopedir(), params.safFilename(), params.versionTag());
     String mrgString = yamlWrangler.asYamlString(mrg);
     webMvcModel.addAttribute("mrg", mrgString);
@@ -48,7 +63,7 @@ public class MRGApi {
   public ResponseEntity<String> handleException(Exception e) {
     String errorMessage;
     if (e instanceof MRGGenerationException) {
-      errorMessage = String.format("Unable to generate MRG. Error was %s", e.getMessage());
+      errorMessage = String.format("Unable to generate 555 MRG. Error was %s", e.getMessage());
     } else if (e instanceof HttpMessageNotReadableException) {
       return ResponseEntity.badRequest().build();
     } else {

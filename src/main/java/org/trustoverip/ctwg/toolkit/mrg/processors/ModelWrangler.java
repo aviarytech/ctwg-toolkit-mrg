@@ -83,6 +83,10 @@ class ModelWrangler {
 
   SAFModel getSaf(String scopedir, String safFilename) throws MRGGenerationException {
     String safAsString = this.getSafAsString(scopedir, safFilename);
+
+    System.out.printf("\n\nsaf@@@@@@@@@@@@@@: ");
+    System.out.printf(safAsString);
+
     if (null == safAsString) {
       throw new MRGGenerationException(String.format(NO_SAF, scopedir));
     }
